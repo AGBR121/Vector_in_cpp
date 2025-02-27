@@ -88,7 +88,7 @@ class Vector {
 
     void print(){
         for(unsigned int i = 0; i<size_; i++){
-            cout << " " << storage_[i];
+            cout << storage_[i]  << " " ;
         }
         cout << endl;
     }
@@ -101,13 +101,15 @@ int main(){
     x.print();
     x.at(5) = 100;
     cout << "position using at: " << x.at(5) << endl;
-    cout << "position using [] " << x[5] << endl;
+    cout << "position using []: " << x[5] << endl;
     x.print();
     x.push_back(10);
     x.push_front(50);
+    cout << "use push_front and push_back" << endl;
     x.print();
     x.pop_front();
     x.pop_back();
+    cout << "use pop_front and pop_back" << endl;
     x.print();
     return 0;
 }

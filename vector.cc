@@ -4,7 +4,9 @@
 using namespace std;
 
 template<typename T>
+
 class Vector {
+    //Values
     private:
     T* storage_;
     unsigned int size_;
@@ -24,6 +26,7 @@ class Vector {
             storage_[i] = element;
         }
     }
+    //Methods
     unsigned int size() const{
         return size_;
     }
@@ -38,6 +41,7 @@ class Vector {
     const T& operator[](unsigned int pos) const{
         return storage_[pos];
     }
+    //Private resize()
     private:
     void resize(){
         unsigned int capacity2_ = capacity_ * 3 / 2;
@@ -61,14 +65,11 @@ class Vector {
     void push_front(const T& element){
         if (size_ == capacity_) {
             resize();
+          }
+        for (int i = size_; i > 0; i--) {
+            storage_[i] = storage_[i - 1];
         }
-        T* storage2_ = new T[capacity_];
-        for(unsigned int i=0; i<size_; i++){
-            storage2_[i+1] = storage_[i];
-        }
-        storage2_[0] = element;
-        delete[] storage_;
-        storage_ = storage2_;
+        storage_[0] = element;
         size_++;
     }
 

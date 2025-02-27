@@ -1,6 +1,8 @@
 #include<iostream>
 #include<cassert>
 
+using namespace std;
+
 template<typename T>
 class Vector {
     private:
@@ -11,12 +13,12 @@ class Vector {
     public:
     Vector(){
         capacity_ = 5;
-        T* storage_ = new T[capacity_];
+        storage_ = new T[capacity_];
         size_ = 0;
     }
     Vector(unsigned int c, T element){
         capacity_ = c;
-        T* storage_ = new T[capacity_];
+        storage_ = new T[capacity_];
         size_ = c;
         for(int i = 0; i < c; i++){
             storage_[i] = element;
@@ -38,7 +40,7 @@ class Vector {
     }
     private:
     void resize(){
-        unsigned int capacity2_ = capacity_ * 1.5;
+        unsigned int capacity2_ = capacity_ * 3 / 2;
         T* storage2_ = new T[capacity2_];
         for(unsigned int i=0; i<size_; i++){
             storage2_[i] = storage_[i];
@@ -85,9 +87,27 @@ class Vector {
     }
 
     void print(){
-        for(unsinged int i = 0; i<size_ i++){
+        for(unsigned int i = 0; i<size_; i++){
             cout << " " << storage_[i];
         }
         cout << endl;
     }
 };
+
+int main(){
+    Vector<int> x(10,0);
+    cout << "Size of x: " << x.size() << endl;
+    cout << "values of x: " ;
+    x.print();
+    x.at(5) = 100;
+    cout << "position using at: " << x.at(5) << endl;
+    cout << "position using [] " << x[5] << endl;
+    x.print();
+    x.push_back(10);
+    x.push_front(50);
+    x.print();
+    x.pop_front();
+    x.pop_back();
+    x.print();
+    return 0;
+}

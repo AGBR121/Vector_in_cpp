@@ -87,6 +87,8 @@ class Vector {
         size_--;
     }
 
+    bool empty() const { return size_ == 0 ; }
+
     void print(){
         for(unsigned int i = 0; i<size_; i++){
             cout << storage_[i]  << " " ;
@@ -112,5 +114,6 @@ int main(){
     x.pop_back();
     cout << "use pop_front and pop_back" << endl;
     x.print();
+    cout << x.empty() << endl;
     return 0;
 }

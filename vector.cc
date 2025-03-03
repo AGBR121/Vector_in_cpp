@@ -84,7 +84,7 @@ class Vector {
         }
         
         // Desplaza los elementos hacia la derecha
-        for (int i = size_; i > 0; i--) {
+        for (unsigned int i = size_; i > 0; i--) {
             storage_[i] = storage_[i - 1];
         }
         storage_[0] = element;
@@ -93,23 +93,46 @@ class Vector {
     
     // Elimina el último elemento del vector
     void pop_back(){
-        size_--;
+        if (size_ > 0) { size_--; return; }
     }
     
     // Elimina el primer elemento del vector y desplaza los demás
     void pop_front(){
-        if (size_ == 0) {
-            return;
-        }
+        if (size_ > 0) {
         for (unsigned int i = 0; i < size_ - 1; i++) {
             storage_[i] = storage_[i + 1];
         }
-        size_--;
+            size_--;
+        }
     }
     
     // Verifica si el vector está vacío
     bool empty() const { return size_ == 0; }
     
+    //insert mete un elemento en una posicion index
+    void insert(unsigned int index, const T& element){
+        assert(index <= size_); //asegurarse que este en el rango
+
+        if(size_ == capacity_){ resize() ; } //ajustar tamano si no alcanza
+
+        for(unsigned int i = size_; i > index; i--){
+            storage_[i] = storage_[i-1]; // Mueve los elementos hacia la derecha
+        }
+        
+        storage_[index] = element; //agregar el elemento al vector
+        size_++; //aumentar el tamaño
+    }
+    //erase elimina un elemento del vector
+    void erase (unsigned int index){
+        assert(index<size_); //asegurarse que este en el rango
+        if(index == 0){ pop_front(); return; }
+        if(index == size_-1){pop_back(); return;}
+        for(unsigned int i = index; i<size_-1; i++){
+            storage_[i] = storage_[i+1]; //mover los elementos a 1 posicion a la izquierda
+        }
+        size_--; //disminuir el tamaño
+    }
+
     // Imprime los elementos del vector
     void print(){
         for(unsigned int i = 0; i<size_; i++){
@@ -140,7 +163,12 @@ int main(){
     x.pop_back(); // Elimina el último elemento
     cout << "use pop_front and pop_back" << endl;
     x.print();
-    
+    x.insert(8, 2); //Agrega un 2 en la posicion 8
+    cout << "insert(8,2)"<<endl;
+    x.print();
+    cout << "erase(8)" << endl; //elimina lo que haya en la posicion 8
+    x.erase(8);
+    x.print();
     cout << x.empty() << endl; // Verifica si el vector está vacío
     return 0;
 }

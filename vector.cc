@@ -93,21 +93,35 @@ class Vector {
     
     // Elimina el último elemento del vector
     void pop_back(){
-        if (size_ > 0) { size_--; return; }
+        assert(size_ > 0);
+        size_--; return; 
     }
     
     // Elimina el primer elemento del vector y desplaza los demás
     void pop_front(){
-        if (size_ > 0) {
+        assert(size_ > 0);
         for (unsigned int i = 0; i < size_ - 1; i++) {
             storage_[i] = storage_[i + 1];
         }
             size_--;
-        }
     }
     
     // Verifica si el vector está vacío
     bool empty() const { return size_ == 0; }
+
+    //Devuelve lo que le sobra de espacio de memoria
+    unsigned int waste(){ return capacity_ - size_;}
+
+    //Borra la memoria que no utiliza
+    void shrink_to_fit(){
+        T* storage2_ = new T[size_];
+        for(unsigned int i = 0; i < size_; i++){
+            storage2_[i] = storage_[i];
+        }
+        delete[] storage_;
+        capacity_ = size_;
+        storage_ = storage2_;
+    }
     
     //insert mete un elemento en una posicion index
     void insert(unsigned int index, const T& element){

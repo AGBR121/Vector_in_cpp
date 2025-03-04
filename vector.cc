@@ -28,10 +28,25 @@ class Vector {
             storage_[i] = element;
         }
     }
+
+    Vector(initializer_list<T> list){
+        capacity_ = list.size();  // La capacidad es el número de elementos en la lista
+        storage_ = new T[capacity_];
+        size_ = list.size();
+        unsigned int i = 0;
+        for (const T& elem : list) {
+            storage_[i++] = elem;  // Copiamos cada elemento al array
+        }
+    }
     
     // Método para obtener el tamaño actual del vector
     unsigned int size() const{
         return size_;
+    }
+
+    //Método para obtener la capacidad atual del vector
+    unsigned int capacity() const{
+        return capacity_;
     }
     
     // Método para acceder a un elemento con verificación de límites
@@ -156,8 +171,26 @@ class Vector {
     }
 };
 
-// Función principal para probar la clase Vector
-int main(){
+template<typename T>
+Vector<T> removeDuplicates(const Vector<T>& vector){
+    Vector<T> withoutDuplicates;
+    for(unsigned int i = 0; i < vector.size(); i++){
+        bool duplicate = false;
+        for(unsigned int j = 0; j < withoutDuplicates.size(); j++){
+            if(withoutDuplicates[j] == vector[i]){
+                duplicate = true;
+                break;
+            }
+        }
+        if(!duplicate){
+            withoutDuplicates.push_back(vector[i]);
+        }
+    }
+    return withoutDuplicates; // Falta devolver el resultado
+}
+
+// Función de prueba para probar la clase Vector y sus metodos
+void Prueba(){
     Vector<int> x(10,0); // Crea un vector de 10 elementos inicializados en 0
     cout << "Size of x: " << x.size() << endl;
     cout << "values of x: " ;
@@ -184,5 +217,32 @@ int main(){
     x.erase(8);
     x.print();
     cout << x.empty() << endl; // Verifica si el vector está vacío
+    return;
+}
+
+
+//Funcion para probar la funcion removeDuplicates
+void RemovingDuplicates(){
+    Vector<int> numbers = {1, 2, 2, 3, 4, 4, 5};
+    Vector<int> uniqueNumbers = removeDuplicates(numbers);
+
+    uniqueNumbers.print(); // Expected: {1, 2, 3, 4, 5}
+
+    Vector<int> numbers2 = {1,1,1,1,1,1};
+    Vector<int> uniqueNumbers2 = removeDuplicates(numbers2);
+    uniqueNumbers2.print(); // Expected: {1}
+
+    Vector<int> numbers3 = {};
+    Vector<int> uniqueNumbers3 = removeDuplicates(numbers3);
+    uniqueNumbers3.print(); // Expected: {}
+
+    Vector<int> numbers4 = {1};
+    Vector<int> uniqueNumbers4 = removeDuplicates(numbers4);
+    uniqueNumbers4.print(); // Expected: {1}
+}
+
+int main(){
+    //prueba();
+    RemovingDuplicates();
     return 0;
 }

@@ -1,4 +1,4 @@
-# How to chech the task
+# How to check the task
 
 ## Insert and Erase methods
 In the vector.cc file, you can find the insert and erase methods, exactly on lines 142 and 155. I implemented a function that you can test and see the results of the methods on the vector class on the line 228.

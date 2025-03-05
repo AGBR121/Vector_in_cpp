@@ -189,6 +189,41 @@ Vector<T> removeDuplicates(const Vector<T>& vector){
     return withoutDuplicates; // Falta devolver el resultado
 }
 
+// Función que recibe dos vectores ordenados y los mezcla en un nuevo vector ordenado
+template<typename T>
+Vector<T> mergeSortedVectors(Vector<T>& vector1, Vector<T>& vector2){
+    if(!vector1.size()){
+        return vector2;
+    }
+    if(!vector2.size()){
+        return vector1;
+    }
+    if(!vector1.size() && !vector2.size()){
+        return Vector<T>();
+    }
+    Vector<T> mergedVector;
+    unsigned int i = 0;
+    unsigned int j = 0;
+    while(i < vector1.size() && j < vector2.size()){
+        if(vector1[i] < vector2[j]){
+            mergedVector.push_back(vector1[i]);
+            i++;
+        }else{
+            mergedVector.push_back(vector2[j]);
+            j++;
+        }
+    }
+    while(i < vector1.size()){
+        mergedVector.push_back(vector1[i]);
+        i++;
+    }
+    while(j < vector2.size()){
+        mergedVector.push_back(vector2[j]);
+        j++;
+    }
+    return mergedVector;
+}
+
 // Función de prueba para probar la clase Vector y sus metodos
 void Prueba(){
     Vector<int> x(10,0); // Crea un vector de 10 elementos inicializados en 0
@@ -241,8 +276,34 @@ void RemovingDuplicates(){
     uniqueNumbers4.print(); // Expected: {1}
 }
 
+
+//Funcion para probar la funcion mergeSortedVectors
+void MergeSortVectorsPrueba(){
+    Vector<int> vector1 = {1, 3, 5};
+    Vector<int> vector2 = {2, 4, 6};
+    Vector<int> mergedVector = mergeSortedVectors(vector1, vector2);
+
+    mergedVector.print(); // Expected: {1, 2, 3, 4, 5, 6}
+
+    Vector<int> vector3 = {1, 2, 3};
+    Vector<int> vector4 = {};
+    Vector<int> mergedVector2 = mergeSortedVectors(vector3, vector4);
+    mergedVector2.print(); // Expected: {1, 2, 3}
+
+    Vector<int> vector5 = {};
+    Vector<int> vector6 = {4,5,6};
+    Vector<int> mergedVector3 = mergeSortedVectors(vector5, vector6);
+    mergedVector3.print(); // Expected: {4, 5, 6}
+
+    Vector<int> vector7 = {1,1,1,1};
+    Vector<int> vector8 = {1,1,1,1};
+    Vector<int> mergedVector4 = mergeSortedVectors(vector7, vector8);
+    mergedVector4.print(); // Expected: {1,1,1,1,1,1,1,1}
+}
+
 int main(){
     //prueba();
-    RemovingDuplicates();
+    //RemovingDuplicates();
+    //MergeSortVectorsPrueba();
     return 0;
 }

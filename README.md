@@ -87,6 +87,9 @@ class Stack{
 
 ## Merge sorted vectors
 In this exercise, we must create a function that allows merging 2 sorted vectors, this function is located in the vector.cc file and is on line 194. I implemented a function that you can test and see the results of the function on the line 281.
+
+#### Function
+
 ```c++
 template<typename T>
 Vector<T> mergeSortedVectors(Vector<T>& vector1, Vector<T>& vector2){

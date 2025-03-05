@@ -192,19 +192,20 @@ Vector<T> removeDuplicates(const Vector<T>& vector){
 // Función que recibe dos vectores ordenados y los mezcla en un nuevo vector ordenado
 template<typename T>
 Vector<T> mergeSortedVectors(Vector<T>& vector1, Vector<T>& vector2){
-    if(!vector1.size()){
+    if(!vector1.size()){ //Si el vector 1 esta vacio, devolvemos el 2
         return vector2;
     }
     if(!vector2.size()){
-        return vector1;
+        return vector1; //Si el vector 2 esta vacío, devolvemos el 1
     }
     if(!vector1.size() && !vector2.size()){
-        return Vector<T>();
+        return Vector<T>(); //Si ambos estan vacios, devolvemos un vector vacío
     }
-    Vector<T> mergedVector;
-    unsigned int i = 0;
-    unsigned int j = 0;
-    while(i < vector1.size() && j < vector2.size()){
+    Vector<T> mergedVector; //Vector donde se guardaran los elementos ordenados
+    unsigned int i = 0; //Indice para recorrer el vector 1
+    unsigned int j = 0;//Indice para recorrer el vector 2
+
+    while(i < vector1.size() && j < vector2.size()){ //Insertar los elementos en orden
         if(vector1[i] < vector2[j]){
             mergedVector.push_back(vector1[i]);
             i++;
@@ -213,15 +214,15 @@ Vector<T> mergeSortedVectors(Vector<T>& vector1, Vector<T>& vector2){
             j++;
         }
     }
-    while(i < vector1.size()){
+    while(i < vector1.size()){ //Verificar si quedaron elementos en el vector 1
         mergedVector.push_back(vector1[i]);
         i++;
     }
-    while(j < vector2.size()){
+    while(j < vector2.size()){//Verificar si quedaron elementos en el vector 2
         mergedVector.push_back(vector2[j]);
         j++;
     }
-    return mergedVector;
+    return mergedVector; //Devolver el vector ordenado
 }
 
 // Función de prueba para probar la clase Vector y sus metodos

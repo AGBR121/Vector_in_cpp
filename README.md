@@ -3,7 +3,7 @@
 ## Insert and Erase methods
 In the vector.cc file, you can find the insert and erase methods, exactly on lines 142 and 155. I implemented a function that you can test and see the results of the methods on the vector class on the line 228.
 
-#### Insert
+#### Method Insert
 ```c++
     void insert(unsigned int index, const T& element){
         assert(index <= size_); 
@@ -18,7 +18,7 @@ In the vector.cc file, you can find the insert and erase methods, exactly on lin
         size_++;
     }
 ```
-#### Erase
+#### Method Erase
 ```c++
 void erase (unsigned int index){
         assert(index<size_); 

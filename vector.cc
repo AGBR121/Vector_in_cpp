@@ -303,7 +303,7 @@ void MergeSortVectorsPrueba(){
 }
 
 int main(){
-    //prueba();
+    //Prueba();
     //RemovingDuplicates();
     //MergeSortVectorsPrueba();
     return 0;

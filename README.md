@@ -78,19 +78,19 @@ Vector<T> removeDuplicates(const Vector<T>& vector){
 The function iterates through the input vector and checks if each element is already present in the `withoutDuplicates` vector before adding it.
 
 #### **Step-by-step Analysis**
-1. Outer Loop:
+1. **Outer Loop:**  
    - Iterates through all elements of the input vector.  
    - Runs **\(O(n)\)** times.
 
-2. Inner Loop:
+2. **Inner Loop:**  
    - Iterates through the `withoutDuplicates` vector to check for duplicates.  
-   - In the worst case (when all elements are unique), `withoutDuplicates` contains up to \(n\) elements.
-   - Runs \(O(m)\) times, where \( m \) is the number of unique elements.
-   - Since \( m \leq n \), the worst-case complexity is \(O(n)\).
+   - In the worst case (when all elements are unique), `withoutDuplicates` contains up to **\(n\)** elements.
+   - Runs **\(O(m)\)** times, where \( m \) is the number of unique elements.
+   - Since \( m \leq n \), the worst-case complexity is **\(O(n)\)**.
 
-#### Overall Complexity
+#### **Overall Complexity**
 - The worst-case scenario occurs when all elements are unique.
-- The function results in a nested loop structure:  
+- The function results in a **nested loop** structure:  
   \[
   O(n) \times O(n) = O(n^2)
   \]

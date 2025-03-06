@@ -94,7 +94,7 @@ The function iterates through the input vector and checks if each element is alr
   \[
   O(n) \times O(n) = O(n^2)
   \]
-- **Final Worst-Case Complexity: \(O(n^2)\)**.
+- Final Worst-Case Complexity: \(O(n^2)\).
 
 
 ## Dynamic Array Resizing Analysis

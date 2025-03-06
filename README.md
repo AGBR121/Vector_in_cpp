@@ -118,7 +118,8 @@ class Stack{
     unsigned int size() const { return data.size(); }
 
     void print() { 
-        for(unsigned int i = data.size()-1; i>=0; i--){
+        assert(!data.empty());
+        for(int i = data.size()-1; i>=0; i--){
             cout << data.at(i) << " ";
         }
         cout << endl;

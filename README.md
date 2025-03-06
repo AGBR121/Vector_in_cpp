@@ -72,12 +72,12 @@ Vector<T> removeDuplicates(const Vector<T>& vector){
 }
 ```
 
-### Complexity Analysis
+### **Complexity Analysis**
 
-#### Function: `removeDuplicates`
+#### **Function: `removeDuplicates`**
 The function iterates through the input vector and checks if each element is already present in the `withoutDuplicates` vector before adding it.
 
-#### Step-by-step Analysis
+#### **Step-by-step Analysis**
 1. Outer Loop:
    - Iterates through all elements of the input vector.  
    - Runs **\(O(n)\)** times.
@@ -94,7 +94,7 @@ The function iterates through the input vector and checks if each element is alr
   \[
   O(n) \times O(n) = O(n^2)
   \]
-- Final Worst-Case Complexity: \(O(n^2)\).
+- **Final Worst-Case Complexity: \(O(n^2)\)**.
 
 
 ## Dynamic Array Resizing Analysis

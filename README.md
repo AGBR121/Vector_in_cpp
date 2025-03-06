@@ -87,9 +87,7 @@ Vector<T> removeDuplicates(const Vector<T>& vector){
 #### **Overall Complexity**
 - The worst-case scenario occurs when all elements are unique.
 - The function results in a **nested loop** structure:  
-  \[
-  O(n) × O(n) = O(n^2)
-  \]
+\[ O(n) \times O(n) = O(n^2) \]
 - **Final Worst-Case Complexity: \(O(n^2)\)**.
 
 

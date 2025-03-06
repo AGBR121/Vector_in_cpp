@@ -55,7 +55,43 @@ Vector<T> removeDuplicates(const Vector<T>& vector){
 }
 ```
 ## Dynamic Array Resizing Analysis
-For this exercise, I need to confirm something first, then I will update the section.
+In this exercise, we are asked to write a program that pushes a large amount of random numbers into your vector implementation. Then, using python, we had to plot the increase in capacity versus size according to the 4 resize policies seen in class (capacity+1, capacity+2, capacity*1.5 and capacity*2) and perform the respective analysis in Google Colab, the data is in the file datos.dat. This analysis can be found at the following link https://colab.research.google.com/drive/1aa5RoWi0g139fZ62MF_HoAHp3d_AbqHq?usp=sharing.
+
+#### Function in python to graph
+```python
+import matplotlib.pyplot as plt
+
+file_path = "/content/datos.dat"
+
+with open(file_path, "r", encoding="utf-8") as file:
+    content = file.readlines()
+
+resizes = {}
+current_resize = None
+
+for line in content:
+    line = line.strip()
+    if line.startswith("resize"):  
+        current_resize = line
+        resizes[current_resize] = {"size": [], "capacity": []}
+    elif line and current_resize and not line.startswith("size capacity"):
+        size, capacity = map(int, line.split())
+        resizes[current_resize]["size"].append(size)
+        resizes[current_resize]["capacity"].append(capacity)
+
+fig, axes = plt.subplots(2, 2, figsize=(12, 10))
+axes = axes.flatten()
+
+for i, (resize_type, data) in enumerate(resizes.items()):
+    axes[i].plot(data["size"], data["capacity"], marker='o', linestyle='-')
+    axes[i].set_title(resize_type)
+    axes[i].set_xlabel("Size")
+    axes[i].set_ylabel("Capacity")
+
+plt.tight_layout()
+plt.show()
+```
+
 
 ## Implementing a Stack Using a Vector
 In this exercise, we are asked to implement the stack structure, this structure that allows storing and retrieving data, being the access mode to its elements of the LIFO type (Last In, First Out) using vectors, this structure is found in the stack.cc file and in the main is the way to test it.
@@ -69,19 +105,24 @@ class Stack{
     public:
     Stack() {}
 
-    void push(const T& element) { data.push_front(element); }
+    void push(const T& element) { data.push_back(element); }
 
-    void pop() { assert(!data.empty()); data.pop_front(); }
-
-    const T& top() const { assert(!data.empty()); return data.at(0); }
-
-    T& top() { assert(!data.empty()); return data.at(0); }
-
+    void pop() { assert(!data.empty()); data.pop_back(); }
+    //top or peek
+    const T& top() const { assert(!data.empty()); return data.at(data.size()-1); }
+ 
+    T& top() { assert(!data.empty()); return data.at(data.size()-1); }
+ 
     bool empty() const { return data.empty(); }
 
     unsigned int size() const { return data.size(); }
 
-    void print() { data.print(); }
+    void print() { 
+        for(unsigned int i = data.size()-1; i>=0; i--){
+            cout << data.at(i) << " ";
+        }
+        cout << endl;
+    }
 };
 ```
 

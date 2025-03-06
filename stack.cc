@@ -189,19 +189,24 @@ class Stack{
     // Métodos del stack
 
     //Método para agregar un elemento al stack
-    void push(const T& element) { data.push_front(element); }
+    void push(const T& element) { data.push_back(element); }
     //Método para eliminar un elemento del stack
-    void pop() { assert(!data.empty()); data.pop_front(); }
-    //Método para obtener el elemento en la cima del stack sin modificarlo
-    const T& top() const { assert(!data.empty()); return data.at(0); }
+    void pop() { assert(!data.empty()); data.pop_back(); }
+    //Método para obtener el elemento en la cima del stack sin modificarlo (top o peek, son lo mismo)
+    const T& top() const { assert(!data.empty()); return data.at(data.size()-1); }
     //Método para obtener el elemento en la cima del stack y modificarlo
-    T& top() { assert(!data.empty()); return data.at(0); }
+    T& top() { assert(!data.empty()); return data.at(data.size()-1); }
     //Método para verificar si el stack está vacío
     bool empty() const { return data.empty(); }
     //Método para obtener el tamaño del stack
     unsigned int size() const { return data.size(); }
     //Método para imprimir los datos del stack
-    void print() { data.print(); }
+    void print() { 
+        for(unsigned int i = data.size()-1; i>=0; i--){
+            cout << data.at(i) << " ";
+        }
+        cout << endl;
+    }
 };
 
 int main(){

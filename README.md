@@ -86,7 +86,7 @@ The function iterates through the input vector and checks if each element is alr
    - Iterates through the `withoutDuplicates` vector to check for duplicates.  
    - In the worst case (when all elements are unique), `withoutDuplicates` contains up to **\(n\)** elements.
    - Runs **\(O(m)\)** times, where \( m \) is the number of unique elements.
-   - Since \( m \leq n \), the worst-case complexity is **\(O(n)\)**.
+   - Since \( m ≤ n \), the worst-case complexity is **\(O(n)\)**.
 
 #### **Overall Complexity**
 - The worst-case scenario occurs when all elements are unique.

@@ -30,6 +30,23 @@ void erase (unsigned int index){
         size_--; 
     }
 ```
+### Complexity Analysis
+
+The operations `insert` and `erase` require shifting elements within the dynamic array, impacting their efficiency.
+
+#### **1. `insert(index, element)`**
+- In the worst case (when inserting at the beginning), all elements must be shifted one position to the right.
+- On average, about `n/2` elements need to be moved.
+- If resizing is required, copying elements takes \(O(n)\), but this does not happen on every insertion.
+- **Time Complexity: \(O(n)\) in the worst case.**
+
+#### **2. `erase(index)`**
+- In the worst case (when deleting the first element), all elements must be shifted one position to the left.
+- On average, about `n/2` elements need to be moved.
+- **Time Complexity: \(O(n)\) in the worst case.**
+
+Both operations have linear worst-case efficiency due to element shifting, but they remain practical for most use cases.
+
 
 ## Removing duplicates
 I write the function so that you can eliminate the elements that are repeated, this function is found in the vector.cc file, the function is found on line 175. I implemented a function that you can test and see the results of the function on the line 260.
@@ -54,6 +71,32 @@ Vector<T> removeDuplicates(const Vector<T>& vector){
     return withoutDuplicates; 
 }
 ```
+
+### Complexity Analysis
+
+#### Function: `removeDuplicates`
+The function iterates through the input vector and checks if each element is already present in the `withoutDuplicates` vector before adding it.
+
+#### Step-by-step Analysis
+1. Outer Loop:
+   - Iterates through all elements of the input vector.  
+   - Runs **\(O(n)\)** times.
+
+2. Inner Loop:
+   - Iterates through the `withoutDuplicates` vector to check for duplicates.  
+   - In the worst case (when all elements are unique), `withoutDuplicates` contains up to \(n\) elements.
+   - Runs \(O(m)\) times, where \( m \) is the number of unique elements.
+   - Since \( m \leq n \), the worst-case complexity is \(O(n)\).
+
+#### Overall Complexity
+- The worst-case scenario occurs when all elements are unique.
+- The function results in a nested loop structure:  
+  \[
+  O(n) \times O(n) = O(n^2)
+  \]
+- **Final Worst-Case Complexity: \(O(n^2)\)**.
+
+
 ## Dynamic Array Resizing Analysis
 In this exercise, we are asked to write a program that pushes a large amount of random numbers into your vector implementation. Then, using python, we had to plot the increase in capacity versus size according to the 4 resize policies seen in class (capacity+1, capacity+2, capacity*1.5 and capacity*2) and perform the respective analysis in Google Colab, the data is in the file datos.dat. This analysis can be found at the following link https://colab.research.google.com/drive/1aa5RoWi0g139fZ62MF_HoAHp3d_AbqHq?usp=sharing.
 

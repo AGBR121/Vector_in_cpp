@@ -53,9 +53,8 @@ I write the function so that you can eliminate the elements that are repeated, t
 
 #### Function
 ```c++
-template<typename T>
-Vector<T> removeDuplicates(const Vector<T>& vector){
-    Vector<T> withoutDuplicates;
+Vector<int> removeDuplicates(const Vector<int>& vector){
+    Vector<int> withoutDuplicates;
     for(unsigned int i = 0; i < vector.size(); i++){
         bool duplicate = false;
         for(unsigned int j = 0; j < withoutDuplicates.size(); j++){

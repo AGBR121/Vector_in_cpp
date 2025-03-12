@@ -1,4 +1,7 @@
-# How to check the task
+# How to check the task code
+
+## The task
+The task was requested on Google Collab, which can be found at this link: https://colab.research.google.com/drive/1aa5RoWi0g139fZ62MF_HoAHp3d_AbqHq?usp=sharing
 
 ## Insert and Erase methods
 In the vector.cc file, you can find the insert and erase methods, exactly on lines 142 and 155. I implemented a function that you can test and see the results of the methods on the vector class on the line 228.
@@ -91,7 +94,7 @@ Vector<int> removeDuplicates(const Vector<int>& vector){
 
 
 ## Dynamic Array Resizing Analysis
-In this exercise, we are asked to write a program that pushes a large amount of random numbers into your vector implementation. Then, using python, we had to plot the increase in capacity versus size according to the 4 resize policies seen in class (capacity+1, capacity+2, capacity*1.5 and capacity*2) and perform the respective analysis in Google Colab, the data is in the file datos.dat. This analysis can be found at the following link https://colab.research.google.com/drive/1aa5RoWi0g139fZ62MF_HoAHp3d_AbqHq?usp=sharing.
+In this exercise, we are asked to write a program that pushes a large amount of random numbers into your vector implementation. Then, using python, we had to plot the increase in capacity versus size according to the 4 resize policies seen in class (capacity+1, capacity+2, capacity*1.5 and capacity*2) and perform the respective analysis in Google Colab, the data is in the file datos.dat.
 
 #### Function in python to graph
 ```python

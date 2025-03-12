@@ -73,10 +73,10 @@ class Vector {
     // Método privado para redimensionar el almacenamiento cuando es necesario
     void resize(){
 
-        //unsigned int capacity2_ = capacity_ * 3 / 2; // Aumenta la capacidad en 1.5 veces
+        unsigned int capacity2_ = capacity_ * 3 / 2; // Aumenta la capacidad en 1.5 veces
         //unsigned int capacity2_ = capacity_ * 2; // Aumenta la capacidad en 2 veces
         //unsigned int capacity2_ = capacity_ + 1; // Aumenta la capacidad + 1
-        unsigned int capacity2_ = capacity_ + 2; // Aumenta la capacidad + 2
+        //unsigned int capacity2_ = capacity_ + 2; // Aumenta la capacidad + 2
 
         T* storage2_ = new T[capacity2_]; // Nuevo arreglo de mayor tamaño
         
@@ -179,7 +179,7 @@ class Vector {
     }
 };
 
-int main(){
+void Data(){
     ofstream archivo("datos.dat", ios::app);
     if (!archivo) {
         cout << "Error al abrir el archivo." << endl;
@@ -199,6 +199,10 @@ int main(){
     }
 
     archivo.close();
+}
+
+int main(){
+    //Data();
     return 0;
 
 }

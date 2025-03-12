@@ -1,7 +1,9 @@
 #include<iostream>
 #include<cassert>
+#include <chrono>
 
 using namespace std;
+using namespace std::chrono;
 
 // Definimos una plantilla de clase para un vector dinámico
 template<typename T>
@@ -185,7 +187,7 @@ Vector<int> removeDuplicates(const Vector<int>& vector){
             withoutDuplicates.push_back(vector[i]);
         }
     }
-    return withoutDuplicates; // Falta devolver el resultado
+    return withoutDuplicates; 
 }
 
 // Función que recibe dos vectores ordenados y los mezcla en un nuevo vector ordenado
@@ -301,9 +303,108 @@ void MergeSortVectorsPrueba(){
     mergedVector4.print(); // Expected: {1,1,1,1,1,1,1,1}
 }
 
+void AnalizeTimeInsertAndErase(){
+    for( int k = 0; k<3; k++){
+        switch (k)
+        {
+        case 0:
+            cout << "Insert and erase 100000 elements in the middle three times" << endl ;
+            break;
+        case 1:
+            cout << "Insert and erase 100000 elements at the beginning  three times" << endl ;
+            break;
+        case 2:
+            cout << "Insert and erase 100000 elements at the end  three times" << endl ;
+            break;
+        default:
+            break;
+        }
+            
+        for(unsigned int j = 1; j<= 3; j++){
+
+            Vector<int> numbers = {1, 2, 3, 4, 5};
+            unsigned int place = 0 ;
+            if(k==0){
+                unsigned int place = numbers.size() /2 ;
+            }else if(k==2){
+                unsigned int place = numbers.size() -1 ;
+            }
+
+            auto inicio = high_resolution_clock::now();
+            for(unsigned int i=0; i<100000;i++){
+                
+                numbers.insert(place, i);
+            }
+            auto fin = high_resolution_clock::now();
+            auto duracion = duration_cast<milliseconds>(fin - inicio);
+            cout << "Time on " << j << " insertion: " << duracion.count() << " ms" << endl;
+
+            auto inicio2 = high_resolution_clock::now();
+
+            for (unsigned int i = 0; i < 100000; i++) {
+                if (numbers.empty()) break;
+
+                unsigned int place = 0;
+                if (k == 0) {
+                    place = numbers.size() / 2;
+                } else if (k == 2) {
+                    place = numbers.size() - 1;
+                }
+
+                numbers.erase(place);
+            }
+
+            auto fin2 = high_resolution_clock::now();
+            auto duracion2 = duration_cast<milliseconds>(fin2 - inicio2);
+            cout << "Time on " << j << " erase: " << duracion2.count() << " ms" << endl;
+        }
+        cout << endl;
+    }
+}
+
+void AnalizeTimeRemoveDuplicates() {
+    for (unsigned int i = 1; i <= 3; i++) {
+        Vector<int> numbers;
+        
+        switch (i) {
+            case 1: 
+                cout << "Case 1: No duplicates" << endl;
+                for (unsigned int j = 0; j < 100000; j++) {
+                    numbers.push_back(j);
+                }
+                break;
+                
+            case 2: 
+                cout << "Case 2: Some duplicates" << endl;
+                for (unsigned int j = 0; j < 50000; j++) {
+                    numbers.push_back(j);
+                    numbers.push_back(j);
+                }
+                break;
+
+            case 3: 
+                cout << "Case 3: All elements are the same" << endl;
+                for (unsigned int j = 0; j < 100000; j++) {
+                    numbers.push_back(1);
+                }
+                break;
+        }
+
+        auto inicio = high_resolution_clock::now();
+        Vector<int> newNumbers = removeDuplicates(numbers);
+        auto fin = high_resolution_clock::now();
+        auto duracion = duration_cast<milliseconds>(fin - inicio);
+
+        cout << "Time for case " << i << ": " << duracion.count() << " ms" << endl;
+    }
+}
+
+
 int main(){
     //Prueba();
     //RemovingDuplicates();
     //MergeSortVectorsPrueba();
+    //AnalizeTimeInsertAndErase();
+    //AnalizeTimeRemoveDuplicates();
     return 0;
 }

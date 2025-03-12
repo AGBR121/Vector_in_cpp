@@ -384,7 +384,7 @@ void AnalizeTimeRemoveDuplicates() {
             auto fin = high_resolution_clock::now();
             auto duracion = duration_cast<milliseconds>(fin - inicio);
 
-            cout << "Time on run " << (k + 1) << ": " << duracion.count() << " ms" << endl;
+            cout << "Time on run " << k << ": " << duracion.count() << " ms" << endl;
             totalDuration += duracion;
         }
 

@@ -303,69 +303,55 @@ void MergeSortVectorsPrueba(){
     mergedVector4.print(); // Expected: {1,1,1,1,1,1,1,1}
 }
 
-void AnalizeTimeInsertAndErase(){
-    for( int k = 0; k<3; k++){
-        switch (k)
-        {
-        case 0:
-            cout << "Insert and erase 100000 elements in the middle three times" << endl ;
-            break;
-        case 1:
-            cout << "Insert and erase 100000 elements at the beginning  three times" << endl ;
-            break;
-        case 2:
-            cout << "Insert and erase 100000 elements at the end  three times" << endl ;
-            break;
-        default:
-            break;
-        }
-            
-        for(unsigned int j = 1; j<= 3; j++){
+void AnalizeTimeInsertAndErase() {
+    for (int k = 0; k < 3; k++) {
+        cout << (k == 0 ? "Insert and erase 100000 elements in the middle three times" :
+                k == 1 ? "Insert and erase 100000 elements at the beginning three times" :
+                         "Insert and erase 100000 elements at the end three times") 
+             << endl;
 
+        milliseconds timeAverageInsert(0);
+        milliseconds timeAverageErase(0);
+
+        for (unsigned int j = 1; j <= 3; j++) {
             Vector<int> numbers = {1, 2, 3, 4, 5};
-            unsigned int place = 0 ;
-            if(k==0){
-                unsigned int place = numbers.size() /2 ;
-            }else if(k==2){
-                unsigned int place = numbers.size() -1 ;
-            }
 
             auto inicio = high_resolution_clock::now();
-            for(unsigned int i=0; i<100000;i++){
-                
+            for (unsigned int i = 0; i < 100000; i++) {
+                unsigned int place = (k == 0) ? numbers.size() / 2 :
+                                     (k == 2) ? numbers.size() - 1 : 0;
                 numbers.insert(place, i);
             }
             auto fin = high_resolution_clock::now();
             auto duracion = duration_cast<milliseconds>(fin - inicio);
             cout << "Time on " << j << " insertion: " << duracion.count() << " ms" << endl;
+            timeAverageInsert += duracion;
 
             auto inicio2 = high_resolution_clock::now();
-
             for (unsigned int i = 0; i < 100000; i++) {
                 if (numbers.empty()) break;
-
-                unsigned int place = 0;
-                if (k == 0) {
-                    place = numbers.size() / 2;
-                } else if (k == 2) {
-                    place = numbers.size() - 1;
-                }
-
+                unsigned int place = (k == 0) ? numbers.size() / 2 :
+                                     (k == 2) ? numbers.size() - 1 : 0;
                 numbers.erase(place);
             }
-
             auto fin2 = high_resolution_clock::now();
             auto duracion2 = duration_cast<milliseconds>(fin2 - inicio2);
             cout << "Time on " << j << " erase: " << duracion2.count() << " ms" << endl;
+            timeAverageErase += duracion2;
         }
+
+        cout << "Average time for insertion: " << (timeAverageInsert.count() / 3) << " ms" << endl;
+        cout << "Average time for erasing: " << (timeAverageErase.count() / 3) << " ms" << endl;
         cout << endl;
     }
 }
 
 void AnalizeTimeRemoveDuplicates() {
+    milliseconds timeAverage(0);
+
     for (unsigned int i = 1; i <= 3; i++) {
         Vector<int> numbers;
-        
+
         switch (i) {
             case 1: 
                 cout << "Case 1: No duplicates" << endl;
@@ -373,7 +359,7 @@ void AnalizeTimeRemoveDuplicates() {
                     numbers.push_back(j);
                 }
                 break;
-                
+
             case 2: 
                 cout << "Case 2: Some duplicates" << endl;
                 for (unsigned int j = 0; j < 50000; j++) {
@@ -390,12 +376,20 @@ void AnalizeTimeRemoveDuplicates() {
                 break;
         }
 
-        auto inicio = high_resolution_clock::now();
-        Vector<int> newNumbers = removeDuplicates(numbers);
-        auto fin = high_resolution_clock::now();
-        auto duracion = duration_cast<milliseconds>(fin - inicio);
+        milliseconds totalDuration(0);
 
-        cout << "Time for case " << i << ": " << duracion.count() << " ms" << endl;
+        for (unsigned int k = 1; k <= 5; k++) { 
+            auto inicio = high_resolution_clock::now();
+            Vector<int> newNumbers = removeDuplicates(numbers);
+            auto fin = high_resolution_clock::now();
+            auto duracion = duration_cast<milliseconds>(fin - inicio);
+
+            cout << "Time on run " << (k + 1) << ": " << duracion.count() << " ms" << endl;
+            totalDuration += duracion;
+        }
+
+        cout << "Average time for case " << i << ": " << (totalDuration.count() / 5) << " ms" << endl;
+        cout << endl;
     }
 }
 

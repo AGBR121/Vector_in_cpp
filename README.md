@@ -4,7 +4,7 @@
 The task was requested on Google Collab, which can be found at this link: https://colab.research.google.com/drive/1aa5RoWi0g139fZ62MF_HoAHp3d_AbqHq?usp=sharing
 
 ## Insert and Erase methods
-In the vector.cc file, you can find the insert and erase methods, exactly on lines 142 and 155. I implemented a function that you can test and see the results of the methods on the vector class on the line 228.
+In the vector.h file, you can find the insert and erase methods. I implemented a function that you can test and see the results of the methods on the vector class on the line 228 in the vector.cc file.
 
 #### Method Insert
 ```c++

@@ -230,7 +230,7 @@ void AnalizeTimeRemoveDuplicates() {
 int main(){
     //Prueba();
     //RemovingDuplicates();
-    MergeSortVectorsPrueba();
+    //MergeSortVectorsPrueba();
     //AnalizeTimeInsertAndErase();
     //AnalizeTimeRemoveDuplicates();
     return 0;

@@ -52,7 +52,7 @@ Both operations have linear worst-case efficiency due to element shifting, but t
 
 
 ## Removing duplicates
-I write the function so that you can eliminate the elements that are repeated, this function is found in the vector.cc file, the function is found on line 175. I implemented a function that you can test and see the results of the function on the line 260.
+I write the function so that you can eliminate the elements that are repeated, this function is found in the vector.cc file, the function is found on line 9. I implemented a function that you can test and see the results of the function on the line 95.
 
 #### Function
 ```c++
@@ -167,7 +167,7 @@ class Stack{
 ```
 
 ## Merge sorted vectors
-In this exercise, we must create a function that allows merging 2 sorted vectors, this function is located in the vector.cc file and is on line 194. I implemented a function that you can test and see the results of the function on the line 281.
+In this exercise, we must create a function that allows merging 2 sorted vectors, this function is located in the vector.cc file and is on line 28. I implemented a function that you can test and see the results of the function on the line 116.
 
 #### Function
 
